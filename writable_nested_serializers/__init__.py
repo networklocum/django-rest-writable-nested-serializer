@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-class WritableNestedByIdLookup():
+class WritableNestedByIdLookup(object):
 
     def create(self, validated_data, *args, **kwargs):
         new_m2m_lists = self.create_m2m_lists(validated_data)
