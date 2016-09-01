@@ -22,7 +22,8 @@ class WritableNestedByIdLookup(object):
         new_m2m_lists = {}
         for field_name in self.Meta.many_to_many_write_by_id_fields:
             field_data = validated_data.pop(field_name, None)
-            if field_data:
+            # Set a manytomany to empty by passing an empty array
+            if field_data is not None:
                 serializer_field = self.get_fields()[field_name]
                 FieldModel = serializer_field.child.Meta.model
                 field_instances = self.validate_field_instance_members(field_data, field_name, FieldModel)
